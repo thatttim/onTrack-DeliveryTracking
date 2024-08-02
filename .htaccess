@@ -1,0 +1,13 @@
+RewriteEngine On
+Options -Multiviews -Indexes
+
+# Rewrite URLs to append .php extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Prevent access to sensitive files
+<FilesMatch "(^config.php$|^controllers/DatabaseController.php$)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

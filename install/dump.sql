@@ -1,0 +1,30 @@
+CREATE TABLE parcels (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    tracking_code VARCHAR(255) NOT NULL UNIQUE,
+    from_address TEXT NOT NULL,
+    from_name TEXT NOT NULL,
+    to_address TEXT NOT NULL,
+    to_name TEXT NOT NULL,
+    from_phone TEXT NOT NULL,
+    to_phone TEXT NOT NULL,
+    from_email TEXT NOT NULL,
+    to_email TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE parcel_statuses (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    tracking_code VARCHAR(255) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tracking_code) REFERENCES parcels (tracking_code)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE parcels
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+
+ALTER TABLE parcel_statuses
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=284;
+
+COMMIT;
